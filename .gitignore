@@ -1,0 +1,40 @@
+.git
+
+# Diretório de estado do Terraform
+*.tfstate
+*.tfstate.*
+
+# Logs do Terraform
+crash.log
+crash.*.log
+
+# Módulos e plugins baixados pelo Terraform
+.terraform/
+.terraform.lock.hcl
+
+# Arquivos de variáveis locais do Terraform
+*.tfvars
+*.tfvars.json
+
+# Senhas e chaves privadas
+*.pem
+*.key
+
+# Arquivos de saída temporários do Terraform
+terraform.tfout
+terraform.tfplan
+*.backup
+
+# Diretórios e arquivos do Kubernetes
+kubeconfig
+.kube/
+*.kube/config
+
+# Outras configurações sensíveis
+.env
+.env.*
+secrets.yaml
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
