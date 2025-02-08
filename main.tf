@@ -261,7 +261,7 @@ module "service_video_upload" {
   labels_app     = "service-video-upload"
   replicas       = 1
   container_name = "service-video-upload"
-  image          = "filipeborba/fh-srv-video-upload:latest"
+  image          = "filipeborba/fh-srv-video-upload:v2"
   container_port = 8080
   env_vars = {
     "URL_AUTH_SERVICE" = {
