@@ -1,6 +1,6 @@
 # fh-aws-services
 
-Este repositório contém a configuração do Terraform para provisionar um cluster EKS na AWS, juntamente com vários serviços Kubernetes, incluindo MySQL RDS, e serviços de usuário, rastreamento de status e upload de vídeo.
+Este repositório contém a configuração do Terraform para provisionar um cluster EKS na AWS, juntamente com vários serviços Kubernetes, incluindo MySQL RDS, e serviços de usuário, rastreamento de status, upload e processamento de vídeo.
 
 ## Estrutura do Repositório
 
@@ -34,6 +34,8 @@ AWS_REGION                          = "us-east-1"
 STATUS_TRACKER_DATASOURCE_USERNAME  = "usuario_banco"
 STATUS_TRACKER_DATASOURCE_PASSWORD  = "senha_banco"
 AWS_S3_BUCKET_NAME                  = "seu_bucket_name"
+AWS_SQS_QUEUE_NAME                  = "seu_queue_name"
+AWS_SNS_ARN_PREFIX                  = "seu_sns_arn_prefix"
 ```
 
 ## Módulos
@@ -42,6 +44,7 @@ AWS_S3_BUCKET_NAME                  = "seu_bucket_name"
 - `service-user`: Provisiona o serviço de usuário no Kubernetes.
 - `service-status-tracker`: Provisiona o serviço de rastreamento de status no Kubernetes.
 - `service-video-upload`: Provisiona o serviço de upload de vídeo no Kubernetes.
+- `service-video-processor`: Provisiona o serviço de processamento de vídeo no Kubernetes.
 - `namespaces`: Cria namespaces no Kubernetes.
 
 ## Outputs
@@ -102,6 +105,10 @@ Define o módulo para provisionar o serviço de rastreamento de status no Kubern
 ### `service-video-upload`
 
 Define o módulo para provisionar o serviço de upload de vídeo no Kubernetes.
+
+### `service-video-processor`
+
+Define o módulo para provisionar o serviço de processamento de vídeo no Kubernetes.
 
 ### `namespaces`
 
