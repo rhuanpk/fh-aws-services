@@ -49,6 +49,16 @@ variable "AWS_S3_BUCKET_NAME" {
   type        = string
 }
 
+variable "AWS_SQS_QUEUE_NAME" {
+  description = "AWS SQS Queue Name"
+  type        = string
+}
+
+variable "AWS_SNS_ARN_PREFIX" {
+  description = "AWS SNS ARN Prefix"
+  type        = string
+}
+
 
 
 

@@ -304,6 +304,56 @@ module "service_video_upload" {
   depends_on               = [module.service_user, module.service_status_tracker]
 }
 
+module "service_video_processor" {
+  source         = "./modules/service-video-processor"
+  name           = "service-video-processor"
+  namespace      = "service-video-processor"
+  labels_app     = "service-video-processor"
+  replicas       = 1
+  container_name = "service-video-processor"
+  image          = "filipeborba/fh-srv-video-processor:v1"
+  container_port = 8080
+  env_vars = {
+    "AWS_DEFAULT_REGION" = {
+      name  = "AWS_DEFAULT_REGION"
+      value = var.AWS_REGION
+    }
+    "AWS_ACCESS_KEY_ID" = {
+      name  = "AWS_ACCESS_KEY_ID"
+      value = var.AWS_ACCESS_KEY_ID
+    }
+    "AWS_SECRET_ACCESS_KEY" = {
+      name  = "AWS_SECRET_ACCESS_KEY"
+      value = var.AWS_SECRET_KEY
+    }
+    "AWS_SESSION_TOKEN" = {
+      name  = "AWS_SESSION_TOKEN"
+      value = var.AWS_SESSION_TOKEN
+    }
+    "AWS_SQS_QUEUE_NAME" = {
+      name  = "AWS_SQS_QUEUE_NAME"
+      value = var.AWS_SQS_QUEUE_NAME
+    }
+    "AWS_SNS_ARN_PREFIX" = {
+      name  = "AWS_SNS_ARN_PREFIX"
+      value = var.AWS_SNS_ARN_PREFIX
+    }
+    "API_SRV_STATUS_URL" = {
+      name  = "API_SRV_STATUS_URL"
+      value = "http://${module.service_status_tracker.load_balancer_hostname}:4000"
+    }
+  }
+  resource_limits_cpu      = "1"
+  resource_limits_memory   = "1Gi"
+  resource_requests_cpu    = "500m"
+  resource_requests_memory = "256Mi"
+  restart_policy           = "Always"
+  port                     = 8080
+  target_port              = 8080
+  application_port         = 4000
+  depends_on               = [module.service_status_tracker]
+}
+
 
 
 
